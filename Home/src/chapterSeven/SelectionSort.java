@@ -1,6 +1,6 @@
 package chapterSeven;
 
-public class InsertionSort {
+public class SelectionSort {
 	
 	public static void printArray(int a[]){
 		System.out.print("[ ");
@@ -26,11 +26,10 @@ public class InsertionSort {
 				}
 			}
 			
-			for(int i = minIndex; i > index; --i){
-				a[i] = a[i-1];	
-			}
+			int temp = minValue;
+			a[minIndex] = a[index];
+			a[index] = temp;
 			
-			a[index] = minValue;
 			
 		}
 		
