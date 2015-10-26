@@ -29,6 +29,10 @@ public class BannerLine {
 	}
 	
 	
+	public int getSize() {
+		return size;
+	}
+
 	/**
 	 * When this method is called, each line is expected to compute an offset for itself
 	 * based on the total length

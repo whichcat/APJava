@@ -17,7 +17,6 @@ public class Banner {
 
 	}
 
-	
 	/**
 	 * Create a raster of the banner lines that are added so far. Any existing
 	 * raster will be removed automatically.
@@ -37,32 +36,41 @@ public class Banner {
 		 * position
 		 * 
 		 */
-		
+
 		BannerLine firstLine = lines.get(0);
 		int n = 0;
-		for(char x : firstLine.getLine().toCharArray()){
+		for (char x : firstLine.getLine().toCharArray()) {
 			Font font = firstLine.getFont();
 			int width = font.getCharWidth(x);
 			n += width + 1;
 		}
-		char[][] raster = new char[n][8];
-		
-		int last = n-1;
-		
-		for(char x : firstLine.getLine().toCharArray()){
+		char[][] raster = new char[n * firstLine.getSize()][8 * firstLine.getSize()];
+
+		int last = n - 1;
+
+		for (char x : firstLine.getLine().toCharArray()) {
 			char[][] character = firstLine.getFont().getPixelArray(x);
-			for(int r = 0; r < character.length; ++r){
-				for(int c = 0; c < 8; ++c){
-					 raster[last - ( character.length - r)][c] = character[r][c];
+			for (int r = 0; r < character.length; ++r) {
+				for (int c = 0; c < 8; ++c) {
+
+					int row_anchor = (last - (character.length - r)) * firstLine.getSize();
+					int col_anchor = c* firstLine.getSize();
+					for (int r1 = 0; r1 < firstLine.getSize(); ++r1) {
+						for (int c1 = 0; c1 < firstLine.getSize(); ++c1) {
+							raster[row_anchor+r1][col_anchor+c1] = character[r][c];
+							
+						}
+					}
+
 				}
 			}
 			Font font = firstLine.getFont();
 			int width = font.getCharWidth(x);
 			last = last - (1 + width);
 		}
-		
+
 		return raster;
-		
+
 	}
 
 	/**

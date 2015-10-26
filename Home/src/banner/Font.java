@@ -20,12 +20,12 @@ public class Font {
 			int i = 0; // counts the line number
 			int n = 0; // counts the index for eight_lines
 			int f = 0; // counts the index for chars
-			int longest = 0; //saves the longest length of the character
+			int longest = 0; // saves the longest length of the character
 
 			FileReader fileReader;
 			fileReader = new FileReader(filename);
 			BufferedReader reader = new BufferedReader(fileReader);
-			
+
 			String[] eight_lines = new String[8];
 
 			while (true) {
@@ -33,30 +33,30 @@ public class Font {
 				if (eight_lines[n] == null) {
 					break;
 				}
-				if (eight_lines[n].length() > longest){
+				if (eight_lines[n].length() > longest) {
 					longest = eight_lines[n].length();
 				}
-				
+
 				i++;
 				n++;
 				if (i % 8 == 0) {
-					
+
 					// Convert the eight_lines into a matrix
 					char[][] arrayobj = new char[8][longest];
-					
-					//System.out.println("Longest is "+longest);
-					
-					for(int row = 0; row < 8; ++row){
-						for(int col=0; col < longest; ++col) {
-							
-							if(col >= eight_lines[row].length())
+
+					// System.out.println("Longest is "+longest);
+
+					for (int row = 0; row < 8; ++row) {
+						for (int col = 0; col < longest; ++col) {
+
+							if (col >= eight_lines[row].length())
 								arrayobj[row][col] = ' ';
-							else 
+							else
 								arrayobj[row][col] = eight_lines[row].charAt(col);
 						}
 					}
 					// -- End of conversion
-							
+
 					chars[f] = new FontChar(arrayobj);
 					eight_lines = new String[8];
 					f++;
@@ -66,7 +66,7 @@ public class Font {
 
 			}
 			reader.close();
-			
+
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -74,13 +74,13 @@ public class Font {
 	}
 
 	public int getCharWidth(char c) {
-		int asciiValueofC = (int)c;
+		int asciiValueofC = (int) c;
 		FontChar fc = chars[asciiValueofC];
 		return fc.getWidth();
 	}
 
 	public char[][] getPixelArray(char c) {
-		int asciiValueofC = (int)c;
+		int asciiValueofC = (int) c;
 		FontChar fc = chars[asciiValueofC];
 		return fc.getPixelArray();
 	}

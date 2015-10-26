@@ -25,7 +25,7 @@ public class Driver {
 		
 		Font a = new Font("/Users/vineelavandanapu/git/Home/src/banner/Font.txt");
 		Banner b = new Banner();
-		b.addBannerLine("Madhuri+Eswar", 1, a);
+		b.addBannerLine("Madhuri+Eswar", 3, a);
 		char[][] charArray = b.rasterize();
 		
 		for (int i=0;i<charArray.length; ++i) {
